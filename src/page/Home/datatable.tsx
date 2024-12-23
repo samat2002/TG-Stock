@@ -1,5 +1,5 @@
 import React from 'react';
-import { Space, Table, Tag } from 'antd';
+import { Button, Space, Table, Tag } from 'antd';
 import Title from 'antd/es/skeleton/Title';
 
 const { Column, ColumnGroup } = Table;
@@ -41,26 +41,27 @@ const data: DataType[] = [
 ];
 
 const DataTable: React.FC = () => (
-    <Table<DataType> dataSource={data} className='bg-white border p-5' >
-        <Column
-            title={<span className="text-white">Age</span>}
-            dataIndex="age" key="age"
-            onHeaderCell={() => ({
-                style: { backgroundColor: '#1E3A8A' } // Tailwind gray-100 color
-            })}
-        />
-        <Column
-            title={<span className="text-white">Address</span>}
-            dataIndex="address" key="address"
-            onHeaderCell={() => ({
-                style: { backgroundColor: '#1E3A8A' } // Tailwind gray-100 color
-            })}
-        />
-        {/* <ColumnGroup title="Name" className='border'>
+    <div className='flex flex-col justify-center items-center'>
+        <Table<DataType> dataSource={data} className='bg-white border p-5 w-1/2 rounded-lg' >
+            <Column
+                title={<span className="text-white">Age</span>}
+                dataIndex="age" key="age"
+                onHeaderCell={() => ({
+                    style: { backgroundColor: '#1E3A8A' } // Tailwind gray-100 color
+                })}
+            />
+            <Column
+                title={<span className="text-white">Address</span>}
+                dataIndex="address" key="address"
+                onHeaderCell={() => ({
+                    style: { backgroundColor: '#1E3A8A' } // Tailwind gray-100 color
+                })}
+            />
+            {/* <ColumnGroup title="Name" className='border'>
             <Column title="First Name" dataIndex="firstName" key="firstName" />
             <Column title="Last Name" dataIndex="lastName" key="lastName" />
         </ColumnGroup> */}
-        {/* <Column
+            {/* <Column
             title="Tags"
             dataIndex="tags"
             key="tags"
@@ -90,7 +91,11 @@ const DataTable: React.FC = () => (
                 </Space>
             )}
         /> */}
-    </Table>
+
+        </Table>
+        {/* <Button className='w-1/2' type="primary" href='/'>Login</Button> */}
+    </div>
+
 );
 
 export default DataTable;
