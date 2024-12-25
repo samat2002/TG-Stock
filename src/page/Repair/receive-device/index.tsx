@@ -1,6 +1,6 @@
 import DataTable from "./datatable"
 
-function SaleStatus() {
+function ReceiveDevice() {
     return (
         <div>
             <h1 className="p-2 bg-blue-700 text-white">Sale Status</h1>
@@ -11,4 +11,4 @@ function SaleStatus() {
     )
 }
 
-export default SaleStatus
+export default ReceiveDevice

@@ -1,9 +1,9 @@
 import DataTable from "./datatable"
 
-function ReportReserve() {
+function Supplier() {
     return (
         <div>
-            <h1 className="p-2 bg-blue-700 text-white">Report Reserve</h1>
+            <h1 className="p-2 bg-blue-700 text-white">Supplier</h1>
             <div className="boder -border-red-500">
                 <DataTable />
             </div>
@@ -11,4 +11,4 @@ function ReportReserve() {
     )
 }
 
-export default ReportReserve
+export default Supplier
