@@ -108,14 +108,14 @@ function Navbar() {
 
     return (
         <div className="bg-white shadow-md p-3">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-start !items-center">
                 <img src="/LogoTG.png" alt="Logo" className="w-20" />
                 <Menu
                     onClick={onClick}
                     selectedKeys={[current]}
                     mode="horizontal"
                     items={menuItems}
-                    className="flex w-full text-sm justify-evenly"
+                    className="flex w-full text-sm justify-start items-end"
                 />
                 <div className="flex items-center gap-x-2">
                     <Avatar size="large" icon={<UserOutlined />} />

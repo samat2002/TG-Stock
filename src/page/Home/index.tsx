@@ -3,7 +3,7 @@ import Department from "../Enhancement/department"
 function Home() {
     return (
         <div>
-            < Department />
+            <h1>TG Stock</h1>
         </div>
     )
 }

@@ -62,7 +62,7 @@ function AppRoute() {
                 <Route path="/po-structure" element={<MainLayout><POStructure /></MainLayout>} />
                 <Route path="/product" element={<MainLayout><Product /></MainLayout>} />
                 <Route path="/recript" element={<MainLayout>< Receipt /></MainLayout>} />
-                <Route path="/receive-product" element={<MainLayout><ReceiveProduct /></MainLayout>} />
+                <Route path="/receive-Enhance" element={<MainLayout><ReceiveProduct /></MainLayout>} />
                 <Route path="/reserve" element={<MainLayout><Reserve /></MainLayout>} />
                 <Route path="/return" element={<MainLayout><Return /></MainLayout>} />
                 <Route path="/sale-history" element={<MainLayout><SaleHistory /></MainLayout>} />
