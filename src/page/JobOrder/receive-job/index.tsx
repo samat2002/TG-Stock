@@ -1,14 +1,12 @@
-import DataTable from "./datatable"
+import DataTable from "./datatable";
 
-function ReceiveJob() {
+const ReceiveJob: React.FC = () => {
     return (
         <div>
-            <h1 className="p-2 bg-blue-700 text-white">ReceiveJob</h1>
-            <div className="boder -border-red-500">
-                <DataTable />
-            </div>
+            <h1 className="p-2 bg-blue-700 text-white">get Job</h1>
+            <DataTable />
         </div>
-    )
-}
+    );
+};
 
-export default ReceiveJob
+export default ReceiveJob;

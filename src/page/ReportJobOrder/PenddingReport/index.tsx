@@ -1,9 +1,9 @@
 import DataTable from "./datatable"
 
-function PeddingReport() {
+function ReportStock() {
     return (
         <div>
-            <h1 className="p-2 bg-blue-700 text-white">Pedding Report</h1>
+            <h1 className="p-2 bg-blue-700 text-white">Report Stock</h1>
             <div className="boder -border-red-500">
                 <DataTable />
             </div>
@@ -11,4 +11,4 @@ function PeddingReport() {
     )
 }
 
-export default PeddingReport
+export default ReportStock

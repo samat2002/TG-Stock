@@ -1,100 +1,195 @@
-import React from 'react';
-import { Button, Space, Table, Tag } from 'antd';
+import React, { useState } from 'react';
+import { Table, Input, Card, Row, Col, Button } from 'antd';
+import type { ColumnsType } from 'antd/es/table';
+import { SearchOutlined } from '@ant-design/icons';
 
-const { Column, ColumnGroup } = Table;
-
-interface DataType {
-    key: React.Key;
-    firstName: string;
-    lastName: string;
-    age: number;
-    address: string;
-    tags: string[];
+interface ReceiptData {
+    key: string;
+    sel?: boolean;
+    poId: string;
+    poLine: string;
+    company: string;
+    quantity: number;
+    serialNumber?: string;
+    spare?: boolean;
+    status?: string;
+    receiptDate: string;
+    deliveryDate: string;
 }
 
-const data: DataType[] = [
-    {
-        key: '1',
-        firstName: 'John',
-        lastName: 'Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        firstName: 'Jim',
-        lastName: 'Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        firstName: 'Joe',
-        lastName: 'Black',
-        age: 32,
-        address: 'Sydney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-];
+const DataTable: React.FC = () => {
+    // Search input states
+    const [poId, setPoId] = useState('');
+    const [itemName, setItemName] = useState('');
+    const [company, setCompany] = useState('');
+    const [serialNumber, setSerialNumber] = useState('');
 
-const DataTable: React.FC = () => (
-    <div className='flex flex-col justify-center items-center'>
-        <Table<DataType> dataSource={data} className='bg-white border p-5 w-1/2 rounded-lg' >
-            <Column
-                title={<span className="text-white">Age</span>}
-                dataIndex="age" key="age"
-                onHeaderCell={() => ({
-                    style: { backgroundColor: '#1E3A8A' } // Tailwind gray-100 color
-                })}
+    // Applied filter states
+    const [appliedFilters, setAppliedFilters] = useState({
+        poId: '',
+        itemName: '',
+        company: '',
+        serialNumber: ''
+    });
+
+    const handleSearch = () => {
+        setAppliedFilters({
+            poId,
+            itemName,
+            company,
+            serialNumber
+        });
+    };
+
+    const columns: ColumnsType<ReceiptData> = [
+        {
+            title: 'Sel',
+            dataIndex: 'sel',
+            key: 'sel',
+            width: 60,
+            render: (_, record) => <input type="checkbox" checked={record.sel} />,
+        },
+        {
+            title: 'PO ID',
+            dataIndex: 'poId',
+            key: 'poId',
+            sorter: (a, b) => a.poId.localeCompare(b.poId),
+        },
+        {
+            title: 'PO Line',
+            dataIndex: 'poLine',
+            key: 'poLine',
+            sorter: (a, b) => a.poLine.localeCompare(b.poLine),
+        },
+        {
+            title: 'Company',
+            dataIndex: 'company',
+            key: 'company',
+            sorter: (a, b) => a.company.localeCompare(b.company),
+        },
+        {
+            title: 'Quantity',
+            dataIndex: 'quantity',
+            key: 'quantity',
+            width: 100,
+            sorter: (a, b) => a.quantity - b.quantity,
+        },
+        {
+            title: 'Serial Number',
+            dataIndex: 'serialNumber',
+            key: 'serialNumber',
+        },
+        {
+            title: 'Spare',
+            dataIndex: 'spare',
+            key: 'spare',
+            width: 80,
+            render: spare => spare ? '✓' : '',
+        },
+        {
+            title: 'Status',
+            dataIndex: 'status',
+            key: 'status',
+        },
+        {
+            title: 'Receipt Date',
+            dataIndex: 'receiptDate',
+            key: 'receiptDate',
+            sorter: (a, b) => a.receiptDate.localeCompare(b.receiptDate),
+        },
+        {
+            title: 'Delivery Date',
+            dataIndex: 'deliveryDate',
+            key: 'deliveryDate',
+            sorter: (a, b) => a.deliveryDate.localeCompare(b.deliveryDate),
+        },
+    ];
+
+    const data: ReceiptData[] = [
+        {
+            key: '1',
+            poId: '6711-076',
+            poLine: '5.00000009',
+            company: 'SOFT STAR : PSR9...SOFT',
+            quantity: 1,
+            serialNumber: '',
+            spare: false,
+            status: '',
+            receiptDate: '29/11/2567',
+            deliveryDate: '10/12/2567',
+        },
+    ];
+
+    const filteredData = data.filter(item =>
+        item.poId.toLowerCase().includes(appliedFilters.poId.toLowerCase()) &&
+        item.poLine.toLowerCase().includes(appliedFilters.itemName.toLowerCase()) &&
+        item.company.toLowerCase().includes(appliedFilters.company.toLowerCase()) &&
+        (item.serialNumber || '').toLowerCase().includes(appliedFilters.serialNumber.toLowerCase())
+    );
+
+    return (
+        <Card>
+            <Row gutter={[16, 16]} className="mb-4">
+                <Col span={5}>
+                    <Input
+                        placeholder="OP ID"
+                        value={poId}
+                        onChange={e => setPoId(e.target.value)}
+                        onPressEnter={handleSearch}
+                    />
+                </Col>
+                <Col span={5}>
+                    <Input
+                        placeholder="Item Name"
+                        value={itemName}
+                        onChange={e => setItemName(e.target.value)}
+                        onPressEnter={handleSearch}
+                    />
+                </Col>
+                <Col span={5}>
+                    <Input
+                        placeholder="Company"
+                        value={company}
+                        onChange={e => setCompany(e.target.value)}
+                        onPressEnter={handleSearch}
+                    />
+                </Col>
+                <Col span={5}>
+                    <Input
+                        placeholder="Serial Number"
+                        value={serialNumber}
+                        onChange={e => setSerialNumber(e.target.value)}
+                        onPressEnter={handleSearch}
+                    />
+                </Col>
+                <Col span={4}>
+                    <Button
+                        type="primary"
+                        icon={<SearchOutlined />}
+                        onClick={handleSearch}
+                        block
+                    >
+                        Search
+                    </Button>
+                </Col>
+            </Row>
+            <Table
+                className='text-sm'
+                columns={columns}
+                dataSource={filteredData}
+                pagination={{
+                    total: filteredData.length,
+                    pageSize: 10,
+                    showTotal: (total, range) =>
+                        `Showing ${range[0]} to ${range[1]} of ${total} entries`,
+                    showSizeChanger: true,
+                    showQuickJumper: true,
+                }}
+                scroll={{ x: true }}
+                size="middle"
             />
-            <Column
-                title={<span className="text-white">Address</span>}
-                dataIndex="address" key="address"
-                onHeaderCell={() => ({
-                    style: { backgroundColor: '#1E3A8A' } // Tailwind gray-100 color
-                })}
-            />
-            {/* <ColumnGroup title="Name" className='border'>
-            <Column title="First Name" dataIndex="firstName" key="firstName" />
-            <Column title="Last Name" dataIndex="lastName" key="lastName" />
-        </ColumnGroup> */}
-            {/* <Column
-            title="Tags"
-            dataIndex="tags"
-            key="tags"
-            render={(tags: string[]) => (
-                <>
-                    {tags.map((tag) => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                            color = 'volcano';
-                        }
-                        return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </>
-            )}
-        />
-        <Column
-            title="Action"
-            key="action"
-            render={(_: any, record: DataType) => (
-                <Space size="middle">
-                    <a>Invite {record.lastName}</a>
-                    <a>Delete</a>
-                </Space>
-            )}
-        /> */}
-
-        </Table>
-        {/* <Button className='w-1/2' type="primary" href='/'>Login</Button> */}
-    </div>
-
-);
+        </Card>
+    );
+};
 
 export default DataTable;
