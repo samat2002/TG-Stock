@@ -1,6 +1,6 @@
 import DataTable from "./datatable"
 
-function JobDescription() {
+function JobDesc() {
     return (
         <div>
             <h1 className="p-2 bg-blue-700 text-white">JobDescription</h1>
@@ -11,4 +11,4 @@ function JobDescription() {
     )
 }
 
-export default JobDescription
+export default JobDesc

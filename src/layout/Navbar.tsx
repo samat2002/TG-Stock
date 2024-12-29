@@ -7,14 +7,14 @@ import type { MenuProps } from 'antd';
 function Navbar() {
     const [current, setCurrent] = useState('');
     const navigate = useNavigate();
+    const [isOpen, setIsOpen] = useState(false);
+    const logoutRef = useRef<HTMLDivElement>(null);
 
     const Home = () => {
         navigate("/");
 
     }
 
-    const [isOpen, setIsOpen] = useState(false);
-    const logoutRef = useRef<HTMLDivElement>(null);
     const toggleMenu = () => {
         setIsOpen((prevState) => !prevState);
     };
@@ -73,11 +73,11 @@ function Navbar() {
             label: 'Jobs Order',
             key: 'jobs-order',
             children: [
-                { label: 'ลักษณะงาน', key: 'job-descriptsion' },
+                { label: 'ลักษณะงาน', key: 'job-desc' },
                 { label: 'ผู้ขาย', key: 'vender' },
                 { label: 'ค้นหา Job', key: 'search-job' },
                 { label: 'หน้ารับงาน', key: 'receive-job' },
-                { label: 'รายการ Pedding', key: 'pedding' },
+                { label: 'รายการ Pending', key: 'pending' },
                 { label: 'Supplier ส่งของ', key: 'supplier' },
                 { label: 'รายการคงเหลือ', key: 'remaining' },
                 { label: 'Supplier ส่งของ (ไม่มี Job)', key: 'Supplier-nojob' },
@@ -126,7 +126,7 @@ function Navbar() {
         },
         {
             label: 'การกำหนดค่าของระบบ',
-            key: 'system-settings',
+            key: 'setting',
         },
         {
             label: 'กระดานความคิดเห็น',
@@ -148,7 +148,6 @@ function Navbar() {
                 <div className="flex items-center gap-x-2">
                     <div
                         className="flex items-center cursor-pointer"
-                        // onClick={isOpen ? () => { setIsOpen(false) } : toggleMenu}
                         onClick={toggleMenu}
                     >
                         {/* <p className="pr-2 text-sm text-black">Samat Thanawatmakmee</p> */}

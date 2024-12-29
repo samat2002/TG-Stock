@@ -30,11 +30,11 @@ import ReceiveReport from './page/Report/receive-product/index.tsx';
 import ReportReserve from './page/Report/report-reserve/index.tsx';
 import InventoryHistory from './page/Report/inventory-history/index.tsx';
 {/* Job Order */ }
-import JobDescription from './page/JobOrder/job-description/index.tsx';
+import JobDesc from './page/JobOrder/job-description/index.tsx';
 import Vender from './page/JobOrder/vender/index.tsx';
 import JobSearch from './page/JobOrder/job-search/index.tsx';
 import ReceiveJob from './page/JobOrder/receive-job/index.tsx';
-import Padding from './page/JobOrder/padding/index.tsx';
+import Pending from './page/JobOrder/padding/index.tsx';
 import RemainItem from './page/JobOrder/remain-item/index.tsx';
 import Summary from './page/JobOrder/summary/index.tsx';
 import Supplier from './page/JobOrder/supplier/index.tsx';
@@ -89,7 +89,7 @@ function AppRoute() {
                 <Route path="/claim-accept" element={<MainLayout><ClaimAccept /></MainLayout>} />
                 <Route path="/sale-history" element={<MainLayout><SaleHistory /></MainLayout>} />
                 <Route path="/po-structure" element={<MainLayout><POStructure /></MainLayout>} />
-                <Route path="/recript" element={<MainLayout>< Receipt /></MainLayout>} />
+                <Route path="/receipt" element={<MainLayout>< Receipt /></MainLayout>} />
                 <Route path="/sale-status" element={<MainLayout><SaleStatus /></MainLayout>} />
                 <Route path="/cancellation-history" element={<MainLayout><CancelHistory /></MainLayout>} />
                 {/* Report */}
@@ -100,11 +100,11 @@ function AppRoute() {
                 <Route path="/report-reserve" element={<MainLayout><ReportReserve /></MainLayout>} />
                 <Route path="/inventory-history" element={<MainLayout><InventoryHistory /></MainLayout>} />
                 {/* Job Order */}
-                <Route path="/job-description" element={<MainLayout><JobDescription /></MainLayout>} />
+                <Route path="/job-desc" element={<MainLayout><JobDesc /></MainLayout>} />
                 <Route path="/vender" element={<MainLayout>< Vender /></MainLayout>} />
                 <Route path="/search-job" element={<MainLayout><JobSearch /></MainLayout>} />
                 <Route path="/receive-job" element={<MainLayout><ReceiveJob /></MainLayout>} />
-                <Route path="/padding" element={<MainLayout>< Padding /></MainLayout>} />
+                <Route path="/pending" element={<MainLayout>< Pending /></MainLayout>} />
                 <Route path="/supplier" element={<MainLayout><Supplier /></MainLayout>} />
                 <Route path="/remaining" element={<MainLayout><RemainItem /></MainLayout>} />
                 <Route path="/supplier-nojob" element={<MainLayout>< SupplierNojob /></MainLayout>} />
